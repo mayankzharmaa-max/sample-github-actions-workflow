@@ -4,11 +4,14 @@ on:
   push:
     branches:
       - main
+      - master
+      - production
+  workflow_dispatch:
 
 jobs:
-  build:
+  hello_world:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello world
-        run: echo "Hello, World!"
+      - name: "Print Hello world"
+        run: echo "Hello, World"
  
