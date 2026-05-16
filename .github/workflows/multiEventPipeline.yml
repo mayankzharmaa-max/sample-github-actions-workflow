@@ -3,15 +3,18 @@ name: "Multi Event Pipeline / workflow"
 on:
   push:
     branches:
-      - main
-      - master
-      - testing
+    - main
+    - master
+    - testing
   pull_request:
     branches:
-      - main
-      - master
-      - testing
+    - main
+    - master
+    - testing
+    types:
+      - closed
   workflow_dispatch:
+    
 
 jobs:
   on-push:
@@ -27,3 +30,17 @@ jobs:
     steps:
       - name: "running on pull request"
         run: echo "running on pull request"
+
+  on-pull-request-closed:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "running on pull request closed"
+        run: echo "running on pull request closed"
+            
+  on-workflow-dispatch:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "running on workflow dispatch"
+        run: echo "running on workflow dispatch"        
